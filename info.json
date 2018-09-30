@@ -1,0 +1,10 @@
+{
+    "name": "deepspace9",
+    "version": "0.1.1",
+    "date": "09/29/2018",
+    "title": "Deepspace 9",
+    "author": "SalaryLupin",
+    "factorio_version": "0.16",
+    "dependencies": ["base >= 0.16"],
+    "description": "Transfer items, technologies, and signals between servers via rockets.\nFor server administrator and developers: see https://github.com/MasterBabol/deepspace9"
+}
