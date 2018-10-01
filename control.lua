@@ -70,8 +70,14 @@ function register_rx_external_provider()
     )
     commands.add_command
     (
+        "set_technologies",
+        "/set_technologies {json}",
+        on_set_technologies
+    )
+    commands.add_command
+    (
         "add_technologies",
-        "/on_add_technologies {json}",
+        "/add_technologies {json}",
         on_add_technologies
     )
 end

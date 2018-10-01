@@ -71,6 +71,15 @@ function on_rx_set_signals(event)
     set_rx_signals(decoded)
 end
 
+function on_set_technologies(event)
+    local param = event.parameter
+    if DEBUG then
+        broadcast_msg_all("set_technologies command issued with: "..param)
+    end
+    decoded = json.parse(param)
+    set_technologies(decoded)
+end
+
 function on_add_technologies(event)
     local param = event.parameter
     if DEBUG then
