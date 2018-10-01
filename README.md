@@ -13,6 +13,7 @@ TODO: fill
 ## Building & Installation
 
 ```sh
+pacman -S lua
 make
 ```
 
