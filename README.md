@@ -28,8 +28,8 @@ This will create a zip file. Copy the zip file to the mod directory in the read-
 | File (unix FIFO) Name | Direction | Description                                                  |
 | --------------------- | --------- | ------------------------------------------------------------ |
 | rx-queue.fifo         | MOD to LA | Request a rx reservation, series of {request-json}           |
-| tx-queue.fifo         | MOD to LA | Send a tx request, series of {signal-json}                   |
-| tx-sigqueue.fifo      | MOD to LA | Send signals, series of {techsync-json}                      |
+| tx-queue.fifo         | MOD to LA | Send a tx request, series of {request-json}                  |
+| tx-sigqueue.fifo      | MOD to LA | Send signals, series of {signal-json}                        |
 | techsync.fifo         | MOD to LA | Send research states of technologies, series of {techsync-json} |
 
 DS9 mod will create each file as soon as it needs to send or announce a rx/tx request or states of signals and technologies. These files are located in a directory named "script-output" in the read-directory of factorio game instance.
