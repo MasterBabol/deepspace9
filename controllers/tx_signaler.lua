@@ -47,15 +47,20 @@ function handle_tx_signaler(signaler_id, signaler_entity)
     end
 end
 
+function handle_rcon_collect_tx_signals(event)
+    local tx_sigs = global.exported_tx_sigs
+    if tx_sigs then
+        rcon.print(json.stringify(tx_sigs).."\n")
+        
+        if DEBUG then
+            broadcast_msg_all(json.stringify(tx_sigs).."\n")
+        end
+    end
+end
+
 function dispatch_tx_signalers()
     local acc_sigs = global.txsignals_accum
     if acc_sigs and #acc_sigs > 0 then
-        if DEBUG then
-            game.write_file(TXSIGQUEUE_FILENAME, json.stringify(acc_sigs).."\n", true)
-        else
-            game.write_file(TXSIGQUEUE_FILENAME, json.stringify(acc_sigs).."\n", true, 0)
-        end
-    --[[else
-        broadcast_msg_all("[!] There are no signals to be sent")]]--
+        global.exported_tx_sigs = acc_sigs
     end
 end

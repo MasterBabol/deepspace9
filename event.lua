@@ -53,6 +53,22 @@ function on_entity_destroyed(event)
     end
 end
 
+function on_dequeue_rx_queue(event)
+    handle_rcon_dequeue_rx_queue(event)
+end
+
+function on_dequeue_tx_queue(event)
+    handle_rcon_dequeue_tx_queue(event)
+end
+
+function on_collect_tx_signals(event)
+    handle_rcon_collect_tx_signals(event)
+end
+
+function on_collect_technology_researches(event)
+    handle_rcon_collect_technology_researches(event)
+end
+
 function on_rx_reservation(event)
     local param = event.parameter
     if DEBUG then

@@ -26,11 +26,18 @@ function handle_tech_sync()
         end
         
         if #tech_status > 0 then
-            if DEBUG then
-                game.write_file(TECHSYNC_FILENAME, json.stringify(tech_status).."\n", true)
-            else
-                game.write_file(TECHSYNC_FILENAME, json.stringify(tech_status).."\n", true, 0)
-            end
+            global.exported_technologies = tech_status
+        end
+    end
+end
+
+function handle_rcon_collect_technology_researches(event)
+    local techs = global.exported_technologies
+    if techs then
+        rcon.print(json.stringify(techs).."\n")
+        
+        if DEBUG then
+            broadcast_msg_all(json.stringify(techs).."\n")
         end
     end
 end
@@ -89,7 +96,7 @@ function add_technologies(decoded_response)
     end
 end
 
-function add_technologies(decoded_response)
+function set_technologies(decoded_response)
     local pfc = game.forces["player"]
     if pfc then
         for _, tech in pairs(decoded_response) do

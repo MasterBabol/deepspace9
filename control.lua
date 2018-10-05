@@ -58,6 +58,34 @@ end
 function register_rx_external_provider()
     commands.add_command
     (
+        "dequeue_rx_queue",
+        "/dequeue_rx_queue",
+        on_dequeue_rx_queue
+    )
+    
+    commands.add_command
+    (
+        "dequeue_tx_queue",
+        "/dequeue_tx_queue",
+        on_dequeue_tx_queue
+    )
+
+    commands.add_command
+    (
+        "collect_tx_signals",
+        "/collect_tx_signals",
+        on_collect_tx_signals
+    )
+
+    commands.add_command
+    (
+        "collect_technology_researches",
+        "/collect_technology_researches",
+        on_collect_technology_researches
+    )
+
+    commands.add_command
+    (
         "confirm_rx_reservation",
         "/confirm_rx_reservation {json}",
         on_rx_reservation

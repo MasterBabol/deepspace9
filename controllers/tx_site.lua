@@ -23,11 +23,28 @@ function create_tx_request(launch_site_ctx, request_items)
     return request
 end
 
-function send_tx_request(request)
+function handle_rcon_dequeue_tx_queue(event)
+    local tx_req_queue = global.exported_tx_req_queue
+    if tx_req_queue == nil then
+        tx_req_queue = {}
+    end
+    for _, req in pairs(tx_req_queue) do
+        rcon.print(json.stringify(req).."\n")
+    end
     if DEBUG then
-        game.write_file(TXQUEUE_FILENAME, json.stringify(request).."\n", true)
+        for _, req in pairs(tx_req_queue) do
+            broadcast_msg_all(json.stringify(req).."\n")
+        end
+    end
+    global.exported_tx_req_queue = {}
+end
+
+function send_tx_request(request)
+    local tx_req_queue = global.exported_tx_req_queue
+    if tx_req_queue then
+        tx_req_queue[#tx_req_queue + 1] = request
     else
-        game.write_file(TXQUEUE_FILENAME, json.stringify(request), true, 0)
+        global.exported_tx_req_queue = {}
     end
 end
 

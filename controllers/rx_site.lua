@@ -47,11 +47,28 @@ function create_rx_reserve_request(launch_site_ctx, request_type)
     return request
 end
 
-function send_rx_request(request)
+function handle_rcon_dequeue_rx_queue(event)
+    local rx_req_queue = global.exported_rx_req_queue
+    if rx_req_queue == nil then
+        rx_req_queue = {}
+    end
+    for _, req in pairs(rx_req_queue) do
+        rcon.print(json.stringify(req).."\n")
+    end
     if DEBUG then
-        game.write_file(RXQUEUE_FILENAME, json.stringify(request).."\n", true)
+        for _, req in pairs(rx_req_queue) do
+            broadcast_msg_all(json.stringify(req).."\n")
+        end
+    end
+    global.exported_rx_req_queue = {}
+end
+
+function send_rx_request(request)
+    local rx_req_queue = global.exported_rx_req_queue
+    if rx_req_queue then
+        rx_req_queue[#rx_req_queue + 1] = request
     else
-        game.write_file(RXQUEUE_FILENAME, json.stringify(request), true, 0)
+        global.exported_rx_req_queue = {}
     end
 end
 
