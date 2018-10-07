@@ -33,7 +33,7 @@ function create_launch_site_entities(silo_entity, player_idx, surface)
         end
     end
     
-    silo_entity.operable = false
+    --silo_entity.operable = false
     
     invmonitor_entity = (invmonitor_entity) or
     surface.create_entity
