@@ -37,11 +37,11 @@ end
 
 function send_tx_request(request)
     local tx_req_queue = global.exported_tx_req_queue
-    if tx_req_queue then
-        tx_req_queue[#tx_req_queue + 1] = request
-    else
-        global.exported_tx_req_queue = {}
+    if tx_req_queue == nil then
+        tx_req_queue = {}
     end
+    tx_req_queue[#tx_req_queue + 1] = request
+    global.exported_tx_req_queue = tx_req_queue
 end
 
 function handle_tx_rocket_launched(launch_site_id, launch_site_ctx, rocket)

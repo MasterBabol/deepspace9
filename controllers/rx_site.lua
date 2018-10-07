@@ -61,11 +61,11 @@ end
 
 function send_rx_request(request)
     local rx_req_queue = global.exported_rx_req_queue
-    if rx_req_queue then
-        rx_req_queue[#rx_req_queue + 1] = request
-    else
-        global.exported_rx_req_queue = {}
+    if rx_req_queue == nil then
+        rx_req_queue = {}
     end
+    rx_req_queue[#rx_req_queue + 1] = request
+    global.exported_rx_req_queue = rx_req_queue
 end
 
 function enqueue_rx_request_dispatch(request)
