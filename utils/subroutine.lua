@@ -107,3 +107,11 @@ function is_tech_level_valid(luaTechnology)
         return false
     end
 end
+
+function table.shallowcopy(t)
+    local nt = {}
+    for k,v in pairs(t) do
+        nt[k] = v
+    end
+    return nt
+end
