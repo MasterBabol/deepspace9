@@ -52,13 +52,9 @@ function handle_rcon_dequeue_rx_queue(event)
     if rx_req_queue == nil then
         rx_req_queue = {}
     end
-    for _, req in pairs(rx_req_queue) do
-        rcon.print(json.stringify(req).."\n")
-    end
+    rcon.print(json.stringify(rx_req_queue))
     if DEBUG then
-        for _, req in pairs(rx_req_queue) do
-            broadcast_msg_all(json.stringify(req).."\n")
-        end
+        broadcast_msg_all(json.stringify(rx_req_queue).."\n")
     end
     global.exported_rx_req_queue = {}
 end
