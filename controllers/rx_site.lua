@@ -159,8 +159,9 @@ function confirm_rx_request_dispatch_from_external(decoded_response)
         end
     end
     -- there is no rxqueue_req and the request but a response has arrived, so revoke
-    decoded_response.type = RX_REQTYPE_REVOKE
-    send_rx_request(decoded_response)
+    local re_response = table.deepcopy(decoded_response);
+    re_response.type = RX_REQTYPE_REVOKE
+    send_rx_request(re_response)
 end
 
 function handle_rx_silo(launch_site_id, launch_site_ctx)
@@ -197,9 +198,10 @@ function handle_rx_silo(launch_site_id, launch_site_ctx)
                 req.ttl = req.ttl - TICK_HANDLER_PERIOD
                 if req.ttl < 0 then
                     cancel_rx_request_dispatch(req)
-                    req.type = RX_REQTYPE_REVOKE
-                    req.ttl = nil
-                    send_rx_request(req) -- revoke previous request
+                    local rev = table.deepcopy(req)
+                    rev.type = RX_REQTYPE_REVOKE
+                    rev.ttl = nil
+                    send_rx_request(rev) -- revoke previous request
                     set_rx_site_state(launch_site_ctx, RXSTATE_IDLE)
                 end
             end
@@ -220,7 +222,7 @@ function handle_rx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
         if comp then
             if comp.items then
                 if DEBUG then
-                    broadcast_msg_all("[+] A RX rocket is launched, received "..#comp.items.." items")
+                    broadcast_msg_all("[+] A RX rocket is launched")
                 end
                 for item_name, item_count in pairs(comp.items) do
                     local to_insert_count = item_count
@@ -228,9 +230,10 @@ function handle_rx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
                     local not_inserted_count = to_insert_count - inserted_count
                     comp.items[item_name] = not_inserted_count
                 end
-                comp.type = RX_REQTYPE_RETURN
-                comp.ttl = nil
-                send_rx_request(comp) -- return not inserted items
+                local ret = table.deepcopy(comp)
+                ret.type = RX_REQTYPE_RETURN
+                ret.ttl = nil
+                send_rx_request(ret) -- return not inserted items
                 set_rx_site_state(launch_site_ctx, RXSTATE_IDLE)
             end
         else
@@ -245,9 +248,10 @@ function handle_rx_silo_destroy(launch_site_ctx)
     if launch_site_ctx.state ~= RXSTATE_IDLE then
         local req = launch_site_ctx.last_working_request
         if req then
-            req.type = RX_REQTYPE_REVOKE
-            req.ttl = nil
-            send_rx_request(req) -- revoke previous request
+            local rev = table.deepcopy(req)
+            rev.type = RX_REQTYPE_REVOKE
+            rev.ttl = nil
+            send_rx_request(rev) -- revoke previous request
         else
             error("[-] Unexpected RX launch site state: last_working_request is nil")
         end
