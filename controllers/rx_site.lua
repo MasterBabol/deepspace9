@@ -222,11 +222,11 @@ function handle_rx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
                 if DEBUG then
                     broadcast_msg_all("[+] A RX rocket is launched, received "..#comp.items.." items")
                 end
-                for _, item in pairs(comp.items) do
-                    local to_insert_count = item.count
-                    local inserted_count = rocket_result_inv.insert(item)
+                for item_name, item_count in pairs(comp.items) do
+                    local to_insert_count = item_count
+                    local inserted_count = rocket_result_inv.insert({ name = item_name, count = item_count })
                     local not_inserted_count = to_insert_count - inserted_count
-                    item.count = not_inserted_count
+                    comp.items[item_name] = not_inserted_count
                 end
                 comp.type = RX_REQTYPE_RETURN
                 comp.ttl = nil
