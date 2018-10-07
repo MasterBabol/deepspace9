@@ -245,11 +245,11 @@ function handle_rx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
 end
 
 function handle_rx_silo_destroy(launch_site_ctx)
-    if launch_site_ctx.state ~= RXSTATE_IDLE then
+    if (launch_site_ctx.state == RXSTATE_LAUNCH_READY) or (launch_site_ctx.state == RXSTATE_LAUNCHED) then
         local req = launch_site_ctx.last_working_request
         if req then
             local rev = table.shallowcopy(req)
-            rev.type = RX_REQTYPE_REVOKE
+            rev.type = RX_REQTYPE_RETURN
             rev.ttl = nil
             send_rx_request(rev) -- revoke previous request
         else
