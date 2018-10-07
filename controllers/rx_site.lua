@@ -160,7 +160,7 @@ function confirm_rx_request_dispatch_from_external(decoded_response)
     end
     -- there is no rxqueue_req and the request but a response has arrived, so revoke
     local re_response = table.shallowcopy(decoded_response);
-    re_response.type = RX_REQTYPE_REVOKE
+    re_response.type = RX_REQTYPE_RETURN
     send_rx_request(re_response)
 end
 
