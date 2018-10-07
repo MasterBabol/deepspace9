@@ -53,11 +53,11 @@ function signal_to_item(signals)
         for _, signal in pairs(signals) do
             local luasig = signal.signal
             if luasig.type == "item" then
-                result[#result + 1] =
-                {
-                    name = luasig.name,
-                    count = signal.count
-                }
+                if (result[luasig.name]) then
+                    result[luasig.name] = result[luasig.name] + signal.count
+                else
+                    result[luasig.name] = signal.count
+                end
             end
         end
     end
