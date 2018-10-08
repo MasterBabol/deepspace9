@@ -54,7 +54,7 @@ function handle_rcon_dequeue_rx_queue(event)
     end
     rcon.print(json.stringify(rx_req_queue))
     if DEBUG then
-        broadcast_msg_all(json.stringify(rx_req_queue).."\n")
+        broadcast_msg_all(json.stringify(rx_req_queue))
     end
     global.exported_rx_req_queue = {}
 end

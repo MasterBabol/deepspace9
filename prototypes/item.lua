@@ -21,12 +21,17 @@ missionctrl_lampctrl_item.name = MISSIONCTRL_LAMPCTRL_NAME
 missionctrl_lampctrl_item.place_result = MISSIONCTRL_LAMPCTRL_NAME
 table.insert(missionctrl_lampctrl_item.flags, "hidden")
 
-rx_signaler_item = table.deepcopy(data.raw["item"]["constant-combinator"])
+rx_signaler_item = table.deepcopy(data.raw["item"]["decider-combinator"])
 rx_signaler_item.icon = "__base__/graphics/icons/radar.png"
 rx_signaler_item.icon_size = 32
 rx_signaler_item.name = RXSIGNALER_NAME
 rx_signaler_item.place_result = RXSIGNALER_NAME
 rx_signaler_item.order = "c[combinators]-d[signaler-rx]"
+
+rx_signalerctrl_item = table.deepcopy(data.raw["item"]["constant-combinator"])
+rx_signalerctrl_item.name = RXSIGNALERCTRL_NAME
+rx_signalerctrl_item.place_result = RXSIGNALERCTRL_NAME
+table.insert(rx_signalerctrl_item.flags, "hidden")
 
 tx_signaler_item = table.deepcopy(data.raw["item"]["small-lamp"])
 tx_signaler_item.icon = "__base__/graphics/icons/radar.png"
@@ -44,5 +49,6 @@ data:extend({
     missionctrl_item,
     missionctrl_lampctrl_item,
     rx_signaler_item,
-    tx_signaler_item
+    tx_signaler_item,
+    rx_signalerctrl_item
 })

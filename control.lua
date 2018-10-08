@@ -79,6 +79,13 @@ function register_rx_external_provider()
 
     commands.add_command
     (
+        "collect_rx_signal_reqs",
+        "/collect_rx_signal_reqs",
+        on_collect_rx_signal_reqs
+    )
+
+    commands.add_command
+    (
         "collect_technology_researches",
         "/collect_technology_researches",
         on_collect_technology_researches

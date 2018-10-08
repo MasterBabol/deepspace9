@@ -61,7 +61,7 @@ missionctrl_lampctrl_entity.sprites =
     west = empty_sprite
 }
 
-local rx_signaler_entity = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"])
+local rx_signaler_entity = table.deepcopy(data.raw["decider-combinator"]["decider-combinator"])
 rx_signaler_entity.name = RXSIGNALER_NAME
 rx_signaler_entity.icon = "__base__/graphics/icons/radar.png"
 rx_signaler_entity.icon_size = 32
@@ -191,6 +191,32 @@ tx_signaler_entity.picture_off =
 }
 tx_signaler_entity.picture_on = tx_signaler_entity.picture_off
 
+local rx_signalerctrl_entity = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"])
+rx_signalerctrl_entity.name = RXSIGNALERCTRL_NAME
+rx_signalerctrl_entity.selection_priority = 0
+rx_signalerctrl_entity.minable = nil
+rx_signalerctrl_entity.selection_box = {{-0.0, -0.0}, {0.0, 0.0}}
+rx_signalerctrl_entity.collision_box = {{-0.0, -0.0}, {0.0, 0.0}}
+rx_signalerctrl_entity.collision_mask = { "resource-layer" }
+rx_signalerctrl_entity.flags = {"not-blueprintable", "not-deconstructable"}
+empty_sprite =
+{
+    filename = "__"..MOD_NAME.."__/graphics/entity/empty.png",
+    x = 0,
+    y = 0,
+    width = 1,
+    height = 1,
+    frame_count = 1,
+    shift = {0, 0},
+}
+rx_signalerctrl_entity.sprites =
+{
+    north = empty_sprite,
+    east = empty_sprite,
+    south = empty_sprite,
+    west = empty_sprite
+}
+
 data:extend({
     rx_rocketsilo_entity,
     tx_rocketsilo_entity,
@@ -200,5 +226,6 @@ data:extend({
     missionctrl_entity,
     missionctrl_lampctrl_entity,
     rx_signaler_entity,
-    tx_signaler_entity
+    tx_signaler_entity,
+    rx_signalerctrl_entity
 })

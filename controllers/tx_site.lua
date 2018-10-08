@@ -28,9 +28,9 @@ function handle_rcon_dequeue_tx_queue(event)
     if tx_req_queue == nil then
         tx_req_queue = {}
     end
-    rcon.print(json.stringify(tx_req_queue).."\n")
+    rcon.print(json.stringify(tx_req_queue))
     if DEBUG then
-        broadcast_msg_all(json.stringify(tx_req_queue).."\n")
+        broadcast_msg_all(json.stringify(tx_req_queue))
     end
     global.exported_tx_req_queue = {}
 end

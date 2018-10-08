@@ -20,7 +20,7 @@ function on_entity_created(event)
             global.txsites[entity.unit_number] = add_tx_context(launch_site_ctx)
         end
     elseif entity.name == RXSIGNALER_NAME then
-        global.rxsignalers[entity.unit_number] = create_rx_signaler(entity)
+        global.rxsignalers[entity.unit_number] = create_rx_signaler(entity, surface)
     elseif entity.name == TXSIGNALER_NAME then
         global.txsignalers[entity.unit_number] = create_tx_signaler(entity)
     end
@@ -45,11 +45,15 @@ function on_entity_destroyed(event)
             
             destroy_launch_site_entities(site)
             global.txsites[entity_idx] = nil
-        elseif entity.name == RXSIGNALER_NAME then
-            global.rxsignalers[entity_idx] = nil
-        elseif entity.name == TXSIGNALER_NAME then
-            global.txsignalers[entity_idx] = nil
         end
+    elseif entity.name == RXSIGNALER_NAME then
+        signaler = global.rxsignalers[entity_idx]
+        handle_rxsignaler_destroy(signaler)
+        
+        destroy_rxsignaler_entities(signaler)
+        global.rxsignalers[entity_idx] = nil
+    elseif entity.name == TXSIGNALER_NAME then
+        global.txsignalers[entity_idx] = nil
     end
 end
 
@@ -63,6 +67,10 @@ end
 
 function on_collect_tx_signals(event)
     handle_rcon_collect_tx_signals(event)
+end
+
+function on_collect_rx_signal_reqs(event)
+    handle_rcon_collect_rx_signal_reqs(event)
 end
 
 function on_collect_technology_researches(event)
@@ -116,29 +124,6 @@ function on_tick(event)
         for key, site in pairs(global.txsites) do
             handle_tx_silo(key, site)
         end
-    end
-    
-    if (game.tick % SIGNALER_VALID_TIME_INTICKS) == 0 then
-        global.txsignals_accum = {}
-    
-        if global.rxsignalers then
-            for key, ctx in pairs(global.rxsignalers) do
-                handle_rx_signaler(key, ctx.signaler)
-            end
-        end
-        
-        if global.txsignalers then
-            for key, ctx in pairs(global.txsignalers) do
-                handle_tx_signaler(key, ctx.signaler)
-            end
-        end
-        
-        dispatch_tx_signalers()
-        global.rxsignals_accum = {}
-    end
-    
-    if (game.tick % TECH_SYNC_PERIOD_INTICKS) == 0 then
-        handle_tech_sync()
     end
 end
 

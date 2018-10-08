@@ -1,9 +1,9 @@
 
-function handle_tech_sync()
+function collect_technology_researches()
+    local tech_status = {}
     local pfc = game.forces["player"]
     if pfc then
         -- work only for the default force, "player"
-        local tech_status = {}
         for tech_name, tech in pairs(pfc.technologies) do
             local new_idx = #tech_status + 1
             local cur_tech_status =
@@ -24,20 +24,17 @@ function handle_tech_sync()
                 tech_status[new_idx] = cur_tech_status
             end
         end
-        
-        if #tech_status > 0 then
-            global.exported_technologies = tech_status
-        end
     end
+    return tech_status
 end
 
 function handle_rcon_collect_technology_researches(event)
-    local techs = global.exported_technologies
+    local techs = collect_technology_researches()
     if techs then
-        rcon.print(json.stringify(techs).."\n")
+        rcon.print(json.stringify(techs))
         
         if DEBUG then
-            broadcast_msg_all(json.stringify(techs).."\n")
+            broadcast_msg_all(json.stringify(techs))
         end
     end
 end
