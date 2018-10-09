@@ -101,7 +101,15 @@ function on_set_technologies(event)
         broadcast_msg_all("set_technologies command issued with: "..param)
     end
     decoded = json.parse(param)
-    set_technologies(decoded)
+    local pfc = game.forces["player"]
+    if pfc then
+        local tech_sync = pfc.technologies[TECH_TECHSYNC_NAME]
+        if tech_sync then
+            if tech_sync.researched then
+                set_technologies(decoded)
+            end
+        end
+    end
 end
 
 function on_add_technologies(event)

@@ -42,6 +42,19 @@ tx_signaler_item.order = "c[combinators]-d[signaler-tx]"
 
 data.raw["item"]["satellite"].rocket_launch_product = nil
 
+rcunit_tray_item = table.deepcopy(data.raw["item"]["rocket-control-unit"])
+rcunit_tray_item.name = ROCKETCONTROLUNIT_TRAY_NAME
+rcunit_tray_item.icon = "__base__/graphics/icons/rocket-control-unit.png"
+
+rf_tray_item = table.deepcopy(data.raw["item"]["rocket-fuel"])
+rf_tray_item.name = ROCKETFUEL_TRAY_NAME
+rf_tray_item.fuel_value = "2.25GJ"
+rf_tray_item.icon = "__base__/graphics/icons/rocket-fuel.png"
+
+ld_tray_item = table.deepcopy(data.raw["item"]["low-density-structure"])
+ld_tray_item.name = LOWDENSITYSTRUCTURE_TRAY_NAME
+ld_tray_item.icon = "__base__/graphics/icons/rocket-structure.png"
+
 data:extend({
     rx_rocketsilo_item,
     tx_rocketsilo_item,
@@ -50,5 +63,8 @@ data:extend({
     missionctrl_lampctrl_item,
     rx_signaler_item,
     tx_signaler_item,
-    rx_signalerctrl_item
+    rx_signalerctrl_item,
+    rcunit_tray_item,
+    rf_tray_item,
+    ld_tray_item
 })

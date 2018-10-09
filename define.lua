@@ -1,10 +1,12 @@
 -------INTERNAL CONFIGURATIONS-------
-DEBUG = true
+DEBUG = false
 
 -------       CONSTANTS       -------
 MOD_NAME = "deepspace9"
 
-TECH_NAME = "deepspace9-research"
+TECH_SILO_NAME = "deepspace9-silo"
+TECH_SIGNAL_NAME = "deepspace9-signal"
+TECH_TECHSYNC_NAME = "deepspace9-techsync"
 
 RXROCKETSILO_NAME = "rx-rocketsilo"
 TXROCKETSILO_NAME = "tx-rocketsilo"
@@ -31,3 +33,14 @@ TICK_HANDLER_PERIOD = 60
 
 RX_WAITING_TIMEOUT_INTICKS = 900
 
+ROCKETCONTROLUNIT_TRAY_NAME = "rocket-control-unit-tray"
+ROCKETFUEL_TRAY_NAME = "rocket-fuel-tray"
+LOWDENSITYSTRUCTURE_TRAY_NAME = "low-density-structure-tray"
+
+ROCKETCONTROLUNIT_TRAY_PACK_NAME = "rocket-control-unit-tray-pack"
+ROCKETFUEL_TRAY_PACK_NAME = "rocket-fuel-tray-pack"
+LOWDENSITYSTRUCTURE_TRAY_PACK_NAME = "low-density-structure-tray-pack"
+
+ROCKETCONTROLUNIT_TRAY_UNPACK_NAME = "rocket-control-unit-tray-unpack"
+ROCKETFUEL_TRAY_UNPACK_NAME = "rocket-fuel-tray-unpack"
+LOWDENSITYSTRUCTURE_TRAY_UNPACK_NAME = "low-density-structure-tray-unpack"
