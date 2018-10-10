@@ -44,3 +44,6 @@ LOWDENSITYSTRUCTURE_TRAY_PACK_NAME = "low-density-structure-tray-pack"
 ROCKETCONTROLUNIT_TRAY_UNPACK_NAME = "rocket-control-unit-tray-unpack"
 ROCKETFUEL_TRAY_UNPACK_NAME = "rocket-fuel-tray-unpack"
 LOWDENSITYSTRUCTURE_TRAY_UNPACK_NAME = "low-density-structure-tray-unpack"
+
+TXELEC_NAME = "tx-electricity"
+RXELEC_NAME = "rx-electricity"

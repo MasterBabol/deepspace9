@@ -100,6 +100,32 @@ ld_tray_unpack_recipe = {
     result_count = 10
 }
 
+txelec_recipe = {
+    type = "recipe",
+    name = TXELEC_NAME,
+    energy_required = 10,
+    enabled = false,
+    ingredients =
+    {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    result = TXELEC_NAME
+}
+
+rxelec_recipe = {
+    type = "recipe",
+    name = RXELEC_NAME,
+    energy_required = 10,
+    enabled = false,
+    ingredients =
+    {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    result = RXELEC_NAME
+}
+
 if DEBUG then
     -- technology required
     rx_rocketsilo_recipe.enabled = true
@@ -113,6 +139,8 @@ if DEBUG then
     rcunit_tray_unpack_recipe.enabled = true
     rf_tray_unpack_recipe.enabled = true
     ld_tray_unpack_recipe.enabled = true
+    txelec_recipe.enabled = true
+    rxelec_recipe.enabled = true
 else
     rx_rocketsilo_recipe.enabled = false
     tx_rocketsilo_recipe.enabled = false
@@ -125,6 +153,8 @@ else
     rcunit_tray_unpack_recipe.enabled = false
     rf_tray_unpack_recipe.enabled = false
     ld_tray_unpack_recipe.enabled = false
+    txelec_recipe.enabled = false
+    rxelec_recipe.enabled = false
 end
 
 data:extend({
@@ -137,5 +167,7 @@ data:extend({
     ld_tray_pack_recipe,
     rcunit_tray_unpack_recipe,
     rf_tray_unpack_recipe,
-    ld_tray_unpack_recipe
+    ld_tray_unpack_recipe,
+    txelec_recipe,
+    rxelec_recipe
 })

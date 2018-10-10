@@ -217,6 +217,26 @@ rx_signalerctrl_entity.sprites =
     west = empty_sprite
 }
 
+local txelec_entity = table.deepcopy(data.raw["accumulator"]["accumulator"])
+txelec_entity.name = TXELEC_NAME
+txelec_entity.energy_source = {
+    type = "electric",
+    buffer_capacity = "5MJ",
+    usage_priority = "terciary",
+    input_flow_limit = "300kW",
+    output_flow_limit = "0kW"
+}
+
+local rxelec_entity = table.deepcopy(data.raw["accumulator"]["accumulator"])
+rxelec_entity.name = RXELEC_NAME
+rxelec_entity.energy_source = {
+    type = "electric",
+    buffer_capacity = "5MJ",
+    usage_priority = "secondary-output",
+    input_flow_limit = "0kW",
+    output_flow_limit = "300kW"
+}
+
 data:extend({
     rx_rocketsilo_entity,
     tx_rocketsilo_entity,
@@ -227,5 +247,7 @@ data:extend({
     missionctrl_lampctrl_entity,
     rx_signaler_entity,
     tx_signaler_entity,
-    rx_signalerctrl_entity
+    rx_signalerctrl_entity,
+    txelec_entity,
+    rxelec_entity
 })

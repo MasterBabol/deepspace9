@@ -8,6 +8,8 @@ require("controllers.rx_site")
 require("controllers.tx_site")
 require("controllers.rx_signaler")
 require("controllers.tx_signaler")
+require("controllers.rx_elec")
+require("controllers.tx_elec")
 require("controllers.tech_sync")
 require("event")
 
@@ -38,6 +40,8 @@ function init_global()
     global.txsites = {}
     global.rxsignalers = {}
     global.txsignalers = {}
+    global.rxelecs = {}
+    global.txelecs = {}
 end
 
 function ensure_global()
@@ -52,6 +56,12 @@ function ensure_global()
     end
     if global.txsignalers == nil then
         global.txsignalers = {}
+    end
+    if global.rxelecs == nil then
+        global.rxelecs = {}
+    end
+    if global.txelecs == nil then
+        global.txelecs = {}
     end
 end
 
@@ -82,6 +92,27 @@ function register_rx_external_provider()
         "collect_rx_signal_reqs",
         "/collect_rx_signal_reqs",
         on_collect_rx_signal_reqs
+    )
+
+    commands.add_command
+    (
+        "collect_rx_elec_reqs",
+        "/collect_rx_elec_reqs",
+        on_collect_rx_elec_reqs
+    )
+
+    commands.add_command
+    (
+        "collect_tx_elecs",
+        "/collect_tx_elecs",
+        on_collect_tx_elecs
+    )
+
+    commands.add_command
+    (
+        "set_rx_elecs",
+        "/set_rx_elecs",
+        on_set_rx_elecs
     )
 
     commands.add_command

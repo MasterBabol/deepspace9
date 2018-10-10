@@ -55,6 +55,12 @@ ld_tray_item = table.deepcopy(data.raw["item"]["low-density-structure"])
 ld_tray_item.name = LOWDENSITYSTRUCTURE_TRAY_NAME
 ld_tray_item.icon = "__base__/graphics/icons/rocket-structure.png"
 
+txelec_item = table.deepcopy(data.raw["item"]["accumulator"])
+txelec_item.name = TXELEC_NAME
+
+rxelec_item = table.deepcopy(data.raw["item"]["accumulator"])
+rxelec_item.name = RXELEC_NAME
+
 data:extend({
     rx_rocketsilo_item,
     tx_rocketsilo_item,
@@ -66,5 +72,7 @@ data:extend({
     rx_signalerctrl_item,
     rcunit_tray_item,
     rf_tray_item,
-    ld_tray_item
+    ld_tray_item,
+    txelec_item,
+    rxelec_item
 })

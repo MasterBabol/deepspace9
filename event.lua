@@ -10,6 +10,7 @@ function on_entity_created(event)
     local entity = event.created_entity
     local player_idx = event.player_index
     local surface = entity.surface
+    ensure_global()
     
     if entity.name == RXROCKETSILO_NAME or entity.name == TXROCKETSILO_NAME then
         local launch_site_ctx = create_launch_site_entities(entity, player_idx, surface)
@@ -23,6 +24,10 @@ function on_entity_created(event)
         global.rxsignalers[entity.unit_number] = create_rx_signaler(entity, surface)
     elseif entity.name == TXSIGNALER_NAME then
         global.txsignalers[entity.unit_number] = create_tx_signaler(entity)
+    elseif entity.name == RXELEC_NAME then
+        global.rxelecs[entity.unit_number] = create_rx_elec(entity)
+    elseif entity.name == TXELEC_NAME then
+        global.txelecs[entity.unit_number] = create_tx_elec(entity)
     end
 end
 
@@ -31,6 +36,7 @@ function on_entity_destroyed(event)
     local entity_idx = entity.unit_number
     --local player_idx = event.player_index
     --local surface = entity.surface
+    ensure_global()
     
     if entity.name == RXROCKETSILO_NAME or entity.name == TXROCKETSILO_NAME then
         if entity.name == RXROCKETSILO_NAME then
@@ -54,6 +60,10 @@ function on_entity_destroyed(event)
         global.rxsignalers[entity_idx] = nil
     elseif entity.name == TXSIGNALER_NAME then
         global.txsignalers[entity_idx] = nil
+    elseif entity.name == RXELEC_NAME then
+        global.rxelecs[entity_idx] = nil
+    elseif entity.name == TXELEC_NAME
+        global.txelecs[entity_idx] = nil
     end
 end
 
@@ -73,8 +83,25 @@ function on_collect_rx_signal_reqs(event)
     handle_rcon_collect_rx_signal_reqs(event)
 end
 
+function on_collect_rx_elec_reqs(event)
+    handle_rcon_collect_rx_elec_reqs(event)
+end
+
+function on_collect_tx_elecs(event)
+    handle_rcon_collect_tx_elecs(event)
+end
+
 function on_collect_technology_researches(event)
     handle_rcon_collect_technology_researches(event)
+end
+
+function on_set_rx_elecs(event)
+    local param = event.parameter
+    if DEBUG then
+        broadcast_msg_all("set_rx_elecs command issued with: "..param)
+    end
+    decoded = json.parse(param)
+    set_rx_elecs(decoded)
 end
 
 function on_rx_reservation(event)
