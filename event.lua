@@ -62,7 +62,7 @@ function on_entity_destroyed(event)
         global.txsignalers[entity_idx] = nil
     elseif entity.name == RXELEC_NAME then
         global.rxelecs[entity_idx] = nil
-    elseif entity.name == TXELEC_NAME
+    elseif entity.name == TXELEC_NAME then
         global.txelecs[entity_idx] = nil
     end
 end
