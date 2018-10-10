@@ -7,6 +7,7 @@ MOD_NAME = "deepspace9"
 TECH_SILO_NAME = "deepspace9-silo"
 TECH_SIGNAL_NAME = "deepspace9-signal"
 TECH_TECHSYNC_NAME = "deepspace9-techsync"
+TECH_ELEC_NAME = "deepspace9-electricity"
 
 RXROCKETSILO_NAME = "rx-rocketsilo"
 TXROCKETSILO_NAME = "tx-rocketsilo"

@@ -71,11 +71,11 @@ tech_signal = {
         {
             type = "unlock-recipe",
             recipe = TXSIGNALER_NAME
-        },
+        }
     },
     unit =
     {
-        count = 200,
+        count = 100,
         ingredients =
         {
             {"science-pack-1", 1},
@@ -106,4 +106,35 @@ tech_sync = {
     order = "c-m-a"
 }
 
-data:extend({tech_rocket,tech_signal,tech_sync})
+tech_elec = {
+    type = "technology",
+    name = TECH_ELEC_NAME,
+    icon = "__"..MOD_NAME.."__/graphics/technology/rxtxsignaler.png",
+    icon_size = 128,
+    prerequisites = {TECH_SIGNAL_NAME, "electric-energy-accumulators-1", "electric-energy-distribution-2"},
+    effects =
+    {
+        {
+            type = "unlock-recipe",
+            recipe = RXELEC_NAME
+        },
+        {
+            type = "unlock-recipe",
+            recipe = TXELEC_NAME
+        }
+    },
+    unit =
+    {
+        count = 200,
+        ingredients =
+        {
+            {"science-pack-1", 1},
+            {"science-pack-2", 1},
+            {"science-pack-3", 1}
+        },
+        time = 30
+    },
+    order = "c-m-a"
+}
+
+data:extend({tech_rocket,tech_signal,tech_sync,tech_elec})
