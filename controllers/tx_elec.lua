@@ -16,7 +16,7 @@ function collect_tx_elecs()
                 acc_elec[#acc_elec + 1] =
                 {
                     id = key,
-                    amount = elec
+                    amount = 1
                 }
                 ctx.elec.energy = ctx.elec.energy - 1000000
             end

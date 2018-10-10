@@ -16,7 +16,7 @@ function collect_rx_elec_reqs()
                 acc_elec[#acc_elec + 1] =
                 {
                     id = key,
-                    amount = elec
+                    amount = 1
                 }
             end
         end
