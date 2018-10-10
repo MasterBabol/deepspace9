@@ -12,12 +12,14 @@ function collect_tx_elecs()
     if global.txelecs then
         for key, ctx in pairs(global.txelecs) do
             local elec = ctx.elec.energy
-            acc_elec[#acc_elec + 1] =
-            {
-                id = key,
-                amount = elec
-            }
-            ctx.elec.energy = 0
+            if elec > 1000000 then
+                acc_elec[#acc_elec + 1] =
+                {
+                    id = key,
+                    amount = elec
+                }
+                ctx.elec.energy = ctx.elec.energy - 1000000
+            end
         end
     end
     return acc_elec
