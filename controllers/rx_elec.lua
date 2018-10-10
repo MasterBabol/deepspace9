@@ -42,7 +42,7 @@ function set_rx_elecs(decoded_response)
             local id = rx_elec_req.id
             local rx_elec = rx_elecs[id]
             if rx_elec then
-                rx_elec.elec.energy = rx_elec.elec.energy + rx_elec_req.amount
+                rx_elec.elec.energy = rx_elec.elec.energy + (rx_elec_req.amount * 1000000)
             end
         end
     end
