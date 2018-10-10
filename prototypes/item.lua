@@ -57,9 +57,11 @@ ld_tray_item.icon = "__base__/graphics/icons/rocket-structure.png"
 
 txelec_item = table.deepcopy(data.raw["item"]["accumulator"])
 txelec_item.name = TXELEC_NAME
+txelec_item.place_result = TXELEC_NAME
 
 rxelec_item = table.deepcopy(data.raw["item"]["accumulator"])
 rxelec_item.name = RXELEC_NAME
+rxelec_item.place_result = RXELEC_NAME
 
 data:extend({
     rx_rocketsilo_item,

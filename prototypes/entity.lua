@@ -219,6 +219,7 @@ rx_signalerctrl_entity.sprites =
 
 local txelec_entity = table.deepcopy(data.raw["accumulator"]["accumulator"])
 txelec_entity.name = TXELEC_NAME
+txelec_entity.minable.result = TXELEC_NAME
 txelec_entity.energy_source = {
     type = "electric",
     buffer_capacity = "5MJ",
@@ -229,6 +230,7 @@ txelec_entity.energy_source = {
 
 local rxelec_entity = table.deepcopy(data.raw["accumulator"]["accumulator"])
 rxelec_entity.name = RXELEC_NAME
+rxelec_entity.minable.result = RXELEC_NAME
 rxelec_entity.energy_source = {
     type = "electric",
     buffer_capacity = "5MJ",
