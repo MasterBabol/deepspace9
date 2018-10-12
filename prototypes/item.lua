@@ -1,8 +1,10 @@
 rx_rocketsilo_item = table.deepcopy(data.raw["item"]["rocket-silo"])
+rx_rocketsilo_item.icon = "__"..MOD_NAME.."__/graphics/icons/rx-rocket-silo.png"
 rx_rocketsilo_item.name = RXROCKETSILO_NAME
 rx_rocketsilo_item.place_result = RXROCKETSILO_NAME
 
 tx_rocketsilo_item = table.deepcopy(data.raw["item"]["rocket-silo"])
+tx_rocketsilo_item.icon = "__"..MOD_NAME.."__/graphics/icons/tx-rocket-silo.png"
 tx_rocketsilo_item.name = TXROCKETSILO_NAME
 tx_rocketsilo_item.place_result = TXROCKETSILO_NAME
 
@@ -22,7 +24,7 @@ missionctrl_lampctrl_item.place_result = MISSIONCTRL_LAMPCTRL_NAME
 table.insert(missionctrl_lampctrl_item.flags, "hidden")
 
 rx_signaler_item = table.deepcopy(data.raw["item"]["decider-combinator"])
-rx_signaler_item.icon = "__base__/graphics/icons/radar.png"
+rx_signaler_item.icon = "__"..MOD_NAME.."__/graphics/icons/rx-signaler.png"
 rx_signaler_item.icon_size = 32
 rx_signaler_item.name = RXSIGNALER_NAME
 rx_signaler_item.place_result = RXSIGNALER_NAME
@@ -34,7 +36,7 @@ rx_signalerctrl_item.place_result = RXSIGNALERCTRL_NAME
 table.insert(rx_signalerctrl_item.flags, "hidden")
 
 tx_signaler_item = table.deepcopy(data.raw["item"]["small-lamp"])
-tx_signaler_item.icon = "__base__/graphics/icons/radar.png"
+tx_signaler_item.icon = "__"..MOD_NAME.."__/graphics/icons/tx-signaler.png"
 tx_signaler_item.icon_size = 32
 tx_signaler_item.name = TXSIGNALER_NAME
 tx_signaler_item.place_result = TXSIGNALER_NAME
@@ -44,16 +46,16 @@ data.raw["item"]["satellite"].rocket_launch_product = nil
 
 rcunit_tray_item = table.deepcopy(data.raw["item"]["rocket-control-unit"])
 rcunit_tray_item.name = ROCKETCONTROLUNIT_TRAY_NAME
-rcunit_tray_item.icon = "__base__/graphics/icons/rocket-control-unit.png"
+rcunit_tray_item.icon = "__"..MOD_NAME.."__/graphics/icons/rocket-control-unit-tray.png"
 
 rf_tray_item = table.deepcopy(data.raw["item"]["rocket-fuel"])
 rf_tray_item.name = ROCKETFUEL_TRAY_NAME
 rf_tray_item.fuel_value = "2.25GJ"
-rf_tray_item.icon = "__base__/graphics/icons/rocket-fuel.png"
+rf_tray_item.icon = "__"..MOD_NAME.."__/graphics/icons/rocket-fuel-tray.png"
 
 ld_tray_item = table.deepcopy(data.raw["item"]["low-density-structure"])
 ld_tray_item.name = LOWDENSITYSTRUCTURE_TRAY_NAME
-ld_tray_item.icon = "__base__/graphics/icons/rocket-structure.png"
+ld_tray_item.icon = "__"..MOD_NAME.."__/graphics/icons/low-density-structure-tray.png"
 
 txelec_item = table.deepcopy(data.raw["item"]["accumulator"])
 txelec_item.name = TXELEC_NAME
