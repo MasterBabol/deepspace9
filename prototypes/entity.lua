@@ -240,8 +240,8 @@ rxelec_entity.energy_source = {
     input_flow_limit = "0kW",
     output_flow_limit = "1500kW"
 }
-txelec_entity.collision_box = {{-1.6, -1.6}, {1.6, 1.6}}
-txelec_entity.selection_box = {{-2, -2}, {2, 2}}
+rxelec_entity.collision_box = {{-1.6, -1.6}, {1.6, 1.6}}
+rxelec_entity.selection_box = {{-2, -2}, {2, 2}}
 
 data:extend({
     rx_rocketsilo_entity,
