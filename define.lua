@@ -15,7 +15,7 @@ TXROCKETSILO_NAME = "tx-rocketsilo"
 RXROCKET_NAME = "rx-rocketsilo-rocket"
 TXROCKET_NAME = "tx-rocketsilo-rocket"
 
-ROCKETPARTS_REQUIRED = 1
+ROCKETPARTS_REQUIRED = 10
 ROCKETINV_SIZE = 49
 
 ROCKETINV_MONITOR_NAME = "rocketinv-monitor"

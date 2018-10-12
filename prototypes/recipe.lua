@@ -19,7 +19,7 @@ rx_signaler_recipe.ingredients =
 tx_signaler_recipe = table.deepcopy(data.raw["recipe"]["radar"])
 tx_signaler_recipe.name = TXSIGNALER_NAME
 tx_signaler_recipe.result = TXSIGNALER_NAME
-rx_signaler_recipe.ingredients =
+tx_signaler_recipe.ingredients =
 {
     {"radar", 10},
     {"processing-unit", 5}
@@ -107,8 +107,9 @@ txelec_recipe = {
     enabled = false,
     ingredients =
     {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {TXSIGNALER_NAME, 10},
+        {RXSIGNALER_NAME, 5},
+        {"accumulator", 10}
     },
     result = TXELEC_NAME
 }
@@ -120,8 +121,9 @@ rxelec_recipe = {
     enabled = false,
     ingredients =
     {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {TXSIGNALER_NAME, 5},
+        {RXSIGNALER_NAME, 10},
+        {"accumulator", 10}
     },
     result = RXELEC_NAME
 }

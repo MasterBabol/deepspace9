@@ -13,12 +13,13 @@ function collect_tx_elecs()
         for key, ctx in pairs(global.txelecs) do
             local elec = ctx.elec.energy
             if elec > 1000000 then
+                local to_send = math.floor(ctx.elec.energy / 1000000)
                 acc_elec[#acc_elec + 1] =
                 {
                     id = key,
-                    amount = 1
+                    amount = to_send
                 }
-                ctx.elec.energy = ctx.elec.energy - 1000000
+                ctx.elec.energy = ctx.elec.energy - (1000000 * to_send)
             end
         end
     end

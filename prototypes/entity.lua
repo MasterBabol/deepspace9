@@ -222,9 +222,9 @@ txelec_entity.name = TXELEC_NAME
 txelec_entity.minable.result = TXELEC_NAME
 txelec_entity.energy_source = {
     type = "electric",
-    buffer_capacity = "5MJ",
+    buffer_capacity = "20MJ",
     usage_priority = "terciary",
-    input_flow_limit = "300kW",
+    input_flow_limit = "1500kW",
     output_flow_limit = "0kW"
 }
 
@@ -233,10 +233,10 @@ rxelec_entity.name = RXELEC_NAME
 rxelec_entity.minable.result = RXELEC_NAME
 rxelec_entity.energy_source = {
     type = "electric",
-    buffer_capacity = "5MJ",
+    buffer_capacity = "20MJ",
     usage_priority = "secondary-output",
     input_flow_limit = "0kW",
-    output_flow_limit = "300kW"
+    output_flow_limit = "1500kW"
 }
 
 data:extend({

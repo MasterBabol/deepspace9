@@ -13,10 +13,11 @@ function collect_rx_elec_reqs()
         for key, ctx in pairs(global.rxelecs) do
             local elec = ctx.elec.electric_buffer_size - ctx.elec.energy
             if elec > 1000000 then
+                local to_rcv = math.floor(elec / 1000000)
                 acc_elec[#acc_elec + 1] =
                 {
                     id = key,
-                    amount = 1
+                    amount = to_rcv
                 }
             end
         end
