@@ -20,7 +20,7 @@ function collect_technology_researches()
                 cur_tech_status.progress = pfc.research_progress
             end
             
-            if cur_tech_status.researched == true or cur_tech_status.progress > 0 then
+            if (cur_tech_status.researched == true) or (cur_tech_status.progress > 0) or (cur_tech__status.level > 0) then
                 tech_status[new_idx] = cur_tech_status
             end
         end
