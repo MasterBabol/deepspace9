@@ -68,6 +68,13 @@ end
 function register_rx_external_provider()
     commands.add_command
     (
+        "server_save",
+        "/server_save",
+        on_server_save
+    )
+    
+    commands.add_command
+    (
         "dequeue_rx_queue",
         "/dequeue_rx_queue",
         on_dequeue_rx_queue

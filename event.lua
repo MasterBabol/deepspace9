@@ -67,6 +67,12 @@ function on_entity_destroyed(event)
     end
 end
 
+function on_server_save(event)
+    game.print('Periodical save process is initiated..')
+    game.server_save()
+    rcon.print('Save process is complete');
+end
+
 function on_dequeue_rx_queue(event)
     handle_rcon_dequeue_rx_queue(event)
 end
