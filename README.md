@@ -29,6 +29,10 @@ DS9 remote cloud-->DS9 local estate: 200 OK
 DS9 local estate->Another game server: Add items to the rocket result inventory
 ```
 
+LINK TO THE DS9 local estate repo: https://github.com/MasterBabol/ds9-local-estate
+
+LINK TO THE DS9 remote cloud repo: https://github.com/MasterBabol/ds9-remote-cloud
+
 TODO: add more details
 
 
