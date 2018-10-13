@@ -49,6 +49,9 @@ This will create a zip file. Copy the zip file to the mod directory in the read-
 **RECOMMENDED TO MOST USERS:** Just get a mod file from the mod forum or in-game mod manager
 
 
+## Support
+
+https://discord.gg/nSGmtBV
 
 ## API
 
