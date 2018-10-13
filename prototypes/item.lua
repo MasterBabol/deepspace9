@@ -59,10 +59,12 @@ ld_tray_item.icon = "__"..MOD_NAME.."__/graphics/icons/low-density-structure-tra
 
 txelec_item = table.deepcopy(data.raw["item"]["accumulator"])
 txelec_item.name = TXELEC_NAME
+txelec_item.icon = "__"..MOD_NAME.."__/graphics/icons/tx-elec.png"
 txelec_item.place_result = TXELEC_NAME
 
 rxelec_item = table.deepcopy(data.raw["item"]["accumulator"])
 rxelec_item.name = RXELEC_NAME
+rxelec_item.icon = "__"..MOD_NAME.."__/graphics/icons/rx-elec.png"
 rxelec_item.place_result = RXELEC_NAME
 
 data:extend({

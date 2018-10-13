@@ -1,4 +1,5 @@
 require("define")
+require("utils.graphics_helper")
 require("prototypes.recipe")
 require("prototypes.item")
 require("prototypes.entity")
