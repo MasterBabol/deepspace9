@@ -6,7 +6,30 @@ A factorio mod: transfer items, technologies, and signals between servers via ro
 
 ## Introduction
 
-TODO: fill
+Launch rockets to send items to DS 9 or receive items from DS 9 ! This mod allows you to share items, electricity, researches, and signals between several servers.
+
+A item transfer works as shown below:
+
+**Sending items:**
+
+```sequence
+note left of Game server (headless): Launch a tx rocket with items
+Game server (headless)->DS9 local estate: Item TX req
+DS9 local estate->DS9 remote cloud: Add items to the cloud
+DS9 remote cloud-->DS9 local estate: 200 OK
+```
+
+**Receiving items:**
+
+```sequence
+note left of Another game server: Launch a rx rocket with item req
+Another game server->DS9 local estate: Item RX req
+DS9 local estate->DS9 remote cloud: Request items from the cloud
+DS9 remote cloud-->DS9 local estate: 200 OK
+DS9 local estate->Another game server: Add items to the rocket result inventory
+```
+
+TODO: add more details
 
 
 
@@ -18,6 +41,8 @@ make clean && make
 ```
 
 This will create a zip file. Copy the zip file to the mod directory in the read-directory of a factorio game instance.
+
+**RECOMMENDED TO MOST USERS:** Just get a mod file from the mod forum or in-game mod manager
 
 
 
