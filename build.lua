@@ -14,7 +14,7 @@ if verb then
             print("[!] Building..")
             os.execute("mkdir "..dir)
             os.execute("cp {control,data,define,event}.lua ./"..dir.."/")
-            os.execute("cp -R {info.json,controllers,graphics,locale,prototypes,utils} ./"..dir.."/")
+            os.execute("cp -R {info.json,scenarios,controllers,graphics,locale,prototypes,utils} ./"..dir.."/")
             os.execute("zip -rq "..dir..".zip "..dir)
             print("[!] Done.")
         end
