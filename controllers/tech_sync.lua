@@ -99,7 +99,7 @@ function set_technologies(decoded_response)
         for _, tech in pairs(decoded_response) do
             local tech_name = tech.name
             if pfc.technologies[tech_name] then
-                if tech.researched == true then
+                if (pfc.technologies[tech_name].researched == false) and tech.researched == true then
                     pfc.technologies[tech_name].researched = tech.researched
                 end
                 if is_tech_level_valid(tech) and (pfc.technologies[tech_name].level <= tech.level) then
