@@ -102,7 +102,7 @@ function set_technologies(decoded_response)
                 if tech.researched == true then
                     pfc.technologies[tech_name].researched = tech.researched
                 end
-                if is_tech_level_valid(tech) and (pfc.technologies[tech_name].level < tech.level) then
+                if is_tech_level_valid(tech) and (pfc.technologies[tech_name].level <= tech.level) then
                     pfc.technologies[tech_name].level = tech.level
                 end
             end
