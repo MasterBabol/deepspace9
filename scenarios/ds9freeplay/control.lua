@@ -13,9 +13,10 @@ script.on_event(defines.events.on_player_created, function(event)
     player.insert{name="green-wire", count=1}
     player.insert{name="constant-combinator", count=1}
     player.insert{name="rx-rocketsilo", count=1}
-    player.insert{name="rocket-control-unit-tray", count=10}
-    player.insert{name="rocket-fuel-tray", count=10}
-    player.insert{name="low-density-structure-tray", count=10}
+    player.insert{name="rocket-control-unit", count=100}
+    player.insert{name="rocket-fuel", count=100}
+    player.insert{name="low-density-structure", count=100}
+    player.insert{name="rx-electricity", count=1}
   end
 end)
 
