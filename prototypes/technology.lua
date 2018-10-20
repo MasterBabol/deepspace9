@@ -13,30 +13,6 @@ tech_rocket = {
         {
             type = "unlock-recipe",
             recipe = TXROCKETSILO_NAME
-        },
-        {
-            type = "unlock-recipe",
-            recipe = ROCKETCONTROLUNIT_TRAY_PACK_NAME
-        },
-        {
-            type = "unlock-recipe",
-            recipe = ROCKETFUEL_TRAY_PACK_NAME
-        },
-        {
-            type = "unlock-recipe",
-            recipe = LOWDENSITYSTRUCTURE_TRAY_PACK_NAME
-        },
-        {
-            type = "unlock-recipe",
-            recipe = ROCKETCONTROLUNIT_TRAY_UNPACK_NAME
-        },
-        {
-            type = "unlock-recipe",
-            recipe = ROCKETFUEL_TRAY_UNPACK_NAME
-        },
-        {
-            type = "unlock-recipe",
-            recipe = LOWDENSITYSTRUCTURE_TRAY_UNPACK_NAME
         }
     },
     unit =

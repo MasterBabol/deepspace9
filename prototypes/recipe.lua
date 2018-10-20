@@ -109,7 +109,7 @@ txelec_recipe = {
     {
         {TXSIGNALER_NAME, 2},
         {RXSIGNALER_NAME, 1},
-        {"accumulator", 10}
+        {"accumulator", 20}
     },
     result = TXELEC_NAME
 }
@@ -123,7 +123,7 @@ rxelec_recipe = {
     {
         {TXSIGNALER_NAME, 1},
         {RXSIGNALER_NAME, 2},
-        {"accumulator", 10}
+        {"accumulator", 20}
     },
     result = RXELEC_NAME
 }
@@ -135,12 +135,6 @@ if DEBUG then
     rx_signaler_recipe.enabled = true
     tx_signaler_recipe.enabled = true
     
-    rcunit_tray_pack_recipe.enabled = true
-    rf_tray_pack_recipe.enabled = true
-    ld_tray_pack_recipe.enabled = true
-    rcunit_tray_unpack_recipe.enabled = true
-    rf_tray_unpack_recipe.enabled = true
-    ld_tray_unpack_recipe.enabled = true
     txelec_recipe.enabled = true
     rxelec_recipe.enabled = true
 else
@@ -149,16 +143,17 @@ else
     rx_signaler_recipe.enabled = false
     tx_signaler_recipe.enabled = false
     
-    rcunit_tray_pack_recipe.enabled = false
-    rf_tray_pack_recipe.enabled = false
-    ld_tray_pack_recipe.enabled = false
-    rcunit_tray_unpack_recipe.enabled = false
-    rf_tray_unpack_recipe.enabled = false
-    ld_tray_unpack_recipe.enabled = false
     txelec_recipe.enabled = false
     rxelec_recipe.enabled = false
 end
 
+rcunit_tray_pack_recipe.enabled = true
+rf_tray_pack_recipe.enabled = true
+ld_tray_pack_recipe.enabled = true
+rcunit_tray_unpack_recipe.enabled = true
+rf_tray_unpack_recipe.enabled = true
+ld_tray_unpack_recipe.enabled = true
+    
 data:extend({
     rx_rocketsilo_recipe,
     tx_rocketsilo_recipe,
