@@ -246,8 +246,8 @@ rxelec_entity.picture =
     animation_speed = 0.5,
     scale = 0.5
 }
-rxelec_entity.charge_animation = txelec_entity.picture
-rxelec_entity.discharge_animation = txelec_entity.picture
+rxelec_entity.charge_animation = rxelec_entity.picture
+rxelec_entity.discharge_animation = rxelec_entity.picture
 
 data:extend({
     rx_rocketsilo_entity,
