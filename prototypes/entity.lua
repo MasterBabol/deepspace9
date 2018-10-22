@@ -74,7 +74,6 @@ rx_signaler_entity.collision_box = {{-1.2, -1.2}, {1.2, 1.2}}
 rx_signaler_entity.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
 rx_signaler_entity.active_energy_usage = "1500KW"
 rx_signaler_entity.minable.result = RXSIGNALER_NAME
-rx_signaler_entity.item_slot_count = RXSIGNALER_MAX_ITEM_SLOTS
 rx_signaler_entity.sprites = make_4way_animation_from_spritesheet
 ({
     layers =
@@ -249,6 +248,69 @@ rxelec_entity.picture =
 rxelec_entity.charge_animation = rxelec_entity.picture
 rxelec_entity.discharge_animation = rxelec_entity.picture
 
+local rx_invensig_entity = table.deepcopy(data.raw["decider-combinator"]["decider-combinator"])
+rx_invensig_entity.name = RXINVENSIG_NAME
+rx_invensig_entity.icon = "__"..MOD_NAME.."__/graphics/icons/rx-inven.png"
+rx_invensig_entity.icon_size = 32
+rx_invensig_entity.corpse = "big-remnants"
+rx_invensig_entity.collision_box = {{-1.2, -1.2}, {1.2, 1.2}}
+rx_invensig_entity.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
+rx_invensig_entity.active_energy_usage = "1500KW"
+rx_invensig_entity.minable.result = RXINVENSIG_NAME
+rx_invensig_entity.sprites = make_4way_animation_from_spritesheet
+({
+    layers =
+    {
+        {
+            filename = "__"..MOD_NAME.."__/graphics/entity/rx-inven-hd.png",
+            priority = "high",
+            width = 196,
+            height = 254,
+            apply_projection = false,
+            line_length = 4,
+            shift = util.by_pixel(1, -16),
+            scale = 0.5
+        },
+        {
+            filename = "__"..MOD_NAME.."__/graphics/entity/inven-shadow-hd.png",
+            priority = "high",
+            width = 343,
+            height = 186,
+            apply_projection = false,
+            line_length = 4,
+            shift = util.by_pixel(39.25,3),
+            draw_as_shadow = true,
+            scale = 0.5
+        }
+    }
+})
+
+local rx_invensigctrl_entity = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"])
+rx_invensigctrl_entity.name = RXINVENSIGCTRL_NAME
+rx_invensigctrl_entity.selection_priority = 0
+rx_invensigctrl_entity.minable = nil
+rx_invensigctrl_entity.selection_box = {{-0.0, -0.0}, {0.0, 0.0}}
+rx_invensigctrl_entity.collision_box = {{-0.0, -0.0}, {0.0, 0.0}}
+rx_invensigctrl_entity.collision_mask = { "resource-layer" }
+rx_invensigctrl_entity.flags = {"not-blueprintable", "not-deconstructable"}
+empty_sprite =
+{
+    filename = "__"..MOD_NAME.."__/graphics/entity/empty.png",
+    x = 0,
+    y = 0,
+    width = 1,
+    height = 1,
+    frame_count = 1,
+    shift = {0, 0},
+}
+rx_invensigctrl_entity.sprites =
+{
+    north = empty_sprite,
+    east = empty_sprite,
+    south = empty_sprite,
+    west = empty_sprite
+}
+
 data:extend({
     rx_rocketsilo_entity,
     tx_rocketsilo_entity,
@@ -261,5 +323,7 @@ data:extend({
     tx_signaler_entity,
     rx_signalerctrl_entity,
     txelec_entity,
-    rxelec_entity
+    rxelec_entity,
+    rx_invensig_entity,
+    rx_invensigctrl_entity
 })

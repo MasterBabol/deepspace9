@@ -11,6 +11,7 @@ require("controllers.tx_signaler")
 require("controllers.rx_elec")
 require("controllers.tx_elec")
 require("controllers.tech_sync")
+require("controllers.rx_invensig")
 require("event")
 
 script.on_init
@@ -42,6 +43,7 @@ function init_global()
     global.txsignalers = {}
     global.rxelecs = {}
     global.txelecs = {}
+    global.rxinvensigs = {}
 end
 
 function ensure_global()
@@ -62,6 +64,9 @@ function ensure_global()
     end
     if global.txelecs == nil then
         global.txelecs = {}
+    end
+    if global.rxinvensigs == nil then
+        global.rxinvensigs = {}
     end
 end
 
@@ -103,6 +108,13 @@ function register_rx_external_provider()
 
     commands.add_command
     (
+        "collect_rx_invensig_reqs",
+        "/collect_rx_invensig_reqs",
+        on_collect_rx_invensig_reqs
+    )
+
+    commands.add_command
+    (
         "collect_rx_elec_reqs",
         "/collect_rx_elec_reqs",
         on_collect_rx_elec_reqs
@@ -135,18 +147,28 @@ function register_rx_external_provider()
         "/confirm_rx_reservation {json}",
         on_rx_reservation
     )
+    
     commands.add_command
     (
         "set_rx_signals",
         "/set_rx_signals {json}",
         on_rx_set_signals
     )
+    
+    commands.add_command
+    (
+        "set_rx_invensigs",
+        "/set_rx_invensigs {json}",
+        on_rx_set_invensigs
+    )
+    
     commands.add_command
     (
         "set_technologies",
         "/set_technologies {json}",
         on_set_technologies
     )
+    
     commands.add_command
     (
         "add_technologies",

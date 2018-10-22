@@ -28,6 +28,8 @@ function on_entity_created(event)
         global.rxelecs[entity.unit_number] = create_rx_elec(entity)
     elseif entity.name == TXELEC_NAME then
         global.txelecs[entity.unit_number] = create_tx_elec(entity)
+    elseif entity.name == RXINVENSIG_NAME then
+        global.rxinvensigs[entity.unit_number] = create_rx_invensig(entity, surface)
     end
 end
 
@@ -64,6 +66,12 @@ function on_entity_destroyed(event)
         global.rxelecs[entity_idx] = nil
     elseif entity.name == TXELEC_NAME then
         global.txelecs[entity_idx] = nil
+    elseif entity.name == RXINVENSIG_NAME then
+        invensig = global.rxinvensigs[entity_idx]
+        handle_rxinvensig_destroy(invensig)
+        
+        destroy_rxinvensig_entities(invensig)
+        global.rxinvensigs[entity_idx] = nil
     end
 end
 
@@ -79,34 +87,65 @@ function on_server_save(event)
 end
 
 function on_dequeue_rx_queue(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_dequeue_rx_queue(event)
 end
 
 function on_dequeue_tx_queue(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_dequeue_tx_queue(event)
 end
 
 function on_collect_tx_signals(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_collect_tx_signals(event)
 end
 
 function on_collect_rx_signal_reqs(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_collect_rx_signal_reqs(event)
 end
 
+function on_collect_rx_invensig_reqs(event)
+	if game.player and DEBUG == false then
+		return
+	end
+    handle_rcon_collect_rx_invensig_reqs(event)
+end
+
 function on_collect_rx_elec_reqs(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_collect_rx_elec_reqs(event)
 end
 
 function on_collect_tx_elecs(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_collect_tx_elecs(event)
 end
 
 function on_collect_technology_researches(event)
+	if game.player and DEBUG == false then
+		return
+	end
     handle_rcon_collect_technology_researches(event)
 end
 
 function on_set_rx_elecs(event)
+	if game.player and DEBUG == false then
+		return
+	end
     local param = event.parameter
     if DEBUG then
         broadcast_msg_all("set_rx_elecs command issued with: "..param)
@@ -116,6 +155,9 @@ function on_set_rx_elecs(event)
 end
 
 function on_rx_reservation(event)
+	if game.player and DEBUG == false then
+		return
+	end
     local param = event.parameter
     if DEBUG then
         broadcast_msg_all("confirm_rx_reservation command issued with: "..param)
@@ -125,6 +167,9 @@ function on_rx_reservation(event)
 end
 
 function on_rx_set_signals(event)
+	if game.player and DEBUG == false then
+		return
+	end
     local param = event.parameter
     if DEBUG then
         broadcast_msg_all("set_rx_signals command issued with: "..param)
@@ -133,7 +178,22 @@ function on_rx_set_signals(event)
     set_rx_signals(decoded)
 end
 
+function on_rx_set_invensigs(event)
+	if game.player and DEBUG == false then
+		return
+	end
+    local param = event.parameter
+    if DEBUG then
+        broadcast_msg_all("set_rx_invensigs command issued with: "..param)
+    end
+    decoded = json.parse(param)
+    set_rx_invensigs(decoded)
+end
+
 function on_set_technologies(event)
+	if game.player and DEBUG == false then
+		return
+	end
     local param = event.parameter
     if DEBUG then
         broadcast_msg_all("set_technologies command issued with: "..param)
@@ -151,6 +211,9 @@ function on_set_technologies(event)
 end
 
 function on_add_technologies(event)
+	if game.player and DEBUG == false then
+		return
+	end
     local param = event.parameter
     if DEBUG then
         broadcast_msg_all("add_technologies command issued with: "..param)

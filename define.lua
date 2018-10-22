@@ -48,3 +48,6 @@ LOWDENSITYSTRUCTURE_TRAY_UNPACK_NAME = "low-density-structure-tray-unpack"
 
 TXELEC_NAME = "tx-electricity"
 RXELEC_NAME = "rx-electricity"
+
+RXINVENSIG_NAME = "rx-invensig"
+RXINVENSIGCTRL_NAME = "rx-invensigctrl"

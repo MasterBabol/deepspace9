@@ -1,52 +1,52 @@
 
-function create_rx_signaler(signaler_entity, surface)
-    local rxsignalerctrl_entity
+function create_rx_invensig(invensig_entity, surface)
+    local rxinvensigctrl_entity
 
-    local signaler_entities = surface.find_entities(
+    local invensig_entities = surface.find_entities(
         {
             {
-                signaler_entity.position.x - 1.2,
-                signaler_entity.position.y - 1.2
+                invensig_entity.position.x - 1.2,
+                invensig_entity.position.y - 1.2
             },
             {
-                signaler_entity.position.x + 1.2,
-                signaler_entity.position.y + 1.2
+                invensig_entity.position.x + 1.2,
+                invensig_entity.position.y + 1.2
             }
         }
     )
     
-    for key, entity in pairs(signaler_entities) do
+    for key, entity in pairs(invensig_entities) do
         if entity.valid then
-            if (entity.name == RXSIGNALERCTRL_NAME) then
-                rxsignalerctrl_entity = entity
-            elseif (entity.name == "entity-ghost" and entity.ghost_name == RXSIGNALERCTRL_NAME) then
-                _, rxsignalerctrl_entity = entity.revive()
+            if (entity.name == RXINVENSIGCTRL_NAME) then
+                rxinvensigctrl_entity = entity
+            elseif (entity.name == "entity-ghost" and entity.ghost_name == RXINVENSIGCTRL_NAME) then
+                _, rxinvensigctrl_entity = entity.revive()
             end
         end
     end
     
-    rxsignalerctrl_entity = (rxsignalerctrl_entity) or
+    rxinvensigctrl_entity = (rxinvensigctrl_entity) or
     surface.create_entity
     (
         {
-            name = RXSIGNALERCTRL_NAME,
+            name = RXINVENSIGCTRL_NAME,
             player = player_idx,
-            force = signaler_entity.force,
+            force = invensig_entity.force,
             position =
             {
-                signaler_entity.position.x,
-                signaler_entity.position.y
+                invensig_entity.position.x,
+                invensig_entity.position.y
             }
         }
     )
-    rxsignalerctrl_entity.operable = false
-    rxsignalerctrl_entity.minable = false
-    rxsignalerctrl_entity.destructible = false
+    rxinvensigctrl_entity.operable = false
+    rxinvensigctrl_entity.minable = false
+    rxinvensigctrl_entity.destructible = false
     
-    rxsignalerctrl_entity.connect_neighbour
+    rxinvensigctrl_entity.connect_neighbour
     (
         {
-            target_entity = signaler_entity,
+            target_entity = invensig_entity,
             wire = defines.wire_type.green,
             target_circuit_id = 1
         }
@@ -54,66 +54,21 @@ function create_rx_signaler(signaler_entity, surface)
     
     local ctx =
     {
-        id = signaler_entity.unit_number,
-        signaler = signaler_entity,
-        signalerctrl = rxsignalerctrl_entity
+        id = invensig_entity.unit_number,
+        invensig = invensig_entity,
+        invensigctrl = rxinvensigctrl_entity
     }
     return ctx
 end
 
-function handle_rx_signaler(signaler_id, signaler_ctx)
-    --[[local signaler_entity = signaler_ctx.signaler
-    local acc_sigs = global.rxsignals_accum
-    if acc_sigs then
-        local filtered_signals = {}
-        local beh = signaler_entity.get_control_behavior()
-        local are_there_undefined_sigs = false
-        
-        for idx = 1, #acc_sigs do
-            local sig = acc_sigs[idx].signal
-            local is_valid = false
-            if sig.type == "item" then
-                if game.item_prototypes[sig.name] then
-                    is_valid = true
-                end
-            elseif sig.type == "fluid" then
-                if game.fluid_prototypes[sig.name] then
-                    is_valid = true
-                end
-            elseif sig.type == "virtual" then
-                if game.virtual_signal_prototypes[sig.name] then
-                    is_valid = true
-                end
-            end
-            
-            if is_valid then
-                are_there_undefined_sigs = true
-                new_idx = #filtered_signals + 1
-                filtered_signals[new_idx] = acc_sigs[idx]
-                filtered_signals[new_idx].index = idx
-            end
-        end
-        if DEBUG and are_there_undefined_sigs == true then
-            broadcast_msg_all("[-] Undefined signal received")
-        end
-        
-        beh.parameters = { parameters = filtered_signals }
-    else
-        signaler_entity.get_control_behavior().parameters =
-        {
-            parameters = {}
-        }
-    end]]--
-end
-
-function set_rx_signals(decoded_response)
-    local rxsignalers = global.rxsignalers
-    if rxsignalers then
-        for _, signaler_req in pairs(decoded_response) do
-            local id = signaler_req.id
-            local rxsignaler = rxsignalers[id]
-            if (rxsignaler) then
-                rxsignaler.signalerctrl.get_control_behavior().parameters =
+function set_rx_invensigs(decoded_response)
+    local rxinvensigs = global.rxinvensigs
+    if rxinvensigs then
+        for _, req in pairs(decoded_response) do
+            local id = req.id
+            local rxinvensig = rxinvensigs[id]
+            if (rxinvensig) then
+                rxinvensig.invensigctrl.get_control_behavior().parameters =
                 {
                     parameters = 
                     {
@@ -121,10 +76,10 @@ function set_rx_signals(decoded_response)
                             index = 1,
                             signal = 
                             {
-                                type=signaler_req.type,
-                                name=signaler_req.name
+                                type=req.type,
+                                name=req.name
                             },
-                            count = signaler_req.count
+                            count = req.count
                         }
                     }
                 }
@@ -133,11 +88,11 @@ function set_rx_signals(decoded_response)
     end
 end
 
-function collect_rx_signal_reqs()
+function collect_rx_invensig_reqs()
     local acc_sigs = {}
-    if (global.rxsignalers) then
-        for key, ctx in pairs(global.rxsignalers) do
-            local fs = ctx.signaler.get_or_create_control_behavior().parameters.parameters.first_signal
+    if (global.rxinvensigs) then
+        for key, ctx in pairs(global.rxinvensigs) do
+            local fs = ctx.invensig.get_or_create_control_behavior().parameters.parameters.first_signal
             if (fs.name) then
                 acc_sigs[#acc_sigs + 1] =
                 {
@@ -151,20 +106,20 @@ function collect_rx_signal_reqs()
     return acc_sigs;
 end
 
-function handle_rcon_collect_rx_signal_reqs(event)
-    local rx_sigs = collect_rx_signal_reqs()
-    if rx_sigs then
-        rcon.print(json.stringify(rx_sigs))
+function handle_rcon_collect_rx_invensig_reqs(event)
+    local rx_invensigs = collect_rx_invensig_reqs()
+    if rx_invensigs then
+        rcon.print(json.stringify(rx_invensigs))
         
         if DEBUG then
-            broadcast_msg_all(json.stringify(rx_sigs))
+            broadcast_msg_all(json.stringify(rx_invensigs))
         end
     end
 end
 
-function handle_rxsignaler_destroy(rxsignaler_ctx)
+function handle_rxinvensig_destroy(rxinvensig_ctx)
 end
 
-function destroy_rxsignaler_entities(rxsignaler_ctx)
-    rxsignaler_ctx.signalerctrl.destroy()
+function destroy_rxinvensig_entities(rxinvensig_ctx)
+    rxinvensig_ctx.invensigctrl.destroy()
 end

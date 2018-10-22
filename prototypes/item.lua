@@ -67,6 +67,18 @@ rxelec_item.name = RXELEC_NAME
 rxelec_item.icon = "__"..MOD_NAME.."__/graphics/icons/rx-elec.png"
 rxelec_item.place_result = RXELEC_NAME
 
+rx_invensig_item = table.deepcopy(data.raw["item"]["decider-combinator"])
+rx_invensig_item.icon = "__"..MOD_NAME.."__/graphics/icons/rx-inven.png"
+rx_invensig_item.icon_size = 32
+rx_invensig_item.name = RXINVENSIG_NAME
+rx_invensig_item.place_result = RXINVENSIG_NAME
+rx_invensig_item.order = "c[combinators]-d[inven-rx]"
+
+rx_invensigctrl_item = table.deepcopy(data.raw["item"]["constant-combinator"])
+rx_invensigctrl_item.name = RXINVENSIGCTRL_NAME
+rx_invensigctrl_item.place_result = RXINVENSIGCTRL_NAME
+table.insert(rx_invensigctrl_item.flags, "hidden")
+
 data:extend({
     rx_rocketsilo_item,
     tx_rocketsilo_item,
@@ -80,5 +92,7 @@ data:extend({
     rf_tray_item,
     ld_tray_item,
     txelec_item,
-    rxelec_item
+    rxelec_item,
+    rx_invensig_item,
+    rx_invensigctrl_item
 })

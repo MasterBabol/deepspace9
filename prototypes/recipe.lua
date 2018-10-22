@@ -128,6 +128,15 @@ rxelec_recipe = {
     result = RXELEC_NAME
 }
 
+rx_invensig_recipe = table.deepcopy(data.raw["recipe"]["radar"])
+rx_invensig_recipe.name = RXINVENSIG_NAME
+rx_invensig_recipe.result = RXINVENSIG_NAME
+rx_invensig_recipe.ingredients =
+{
+    {"radar", 5},
+    {"advanced-circuit", 5}
+}
+
 if DEBUG then
     -- technology required
     rx_rocketsilo_recipe.enabled = true
@@ -137,6 +146,7 @@ if DEBUG then
     
     txelec_recipe.enabled = true
     rxelec_recipe.enabled = true
+    rx_invensig_recipe.enabled = true
 else
     rx_rocketsilo_recipe.enabled = false
     tx_rocketsilo_recipe.enabled = false
@@ -145,6 +155,7 @@ else
     
     txelec_recipe.enabled = false
     rxelec_recipe.enabled = false
+    rx_invensig_recipe.enabled = false
 end
 
 rcunit_tray_pack_recipe.enabled = true
@@ -166,5 +177,6 @@ data:extend({
     rf_tray_unpack_recipe,
     ld_tray_unpack_recipe,
     txelec_recipe,
-    rxelec_recipe
+    rxelec_recipe,
+    rx_invensig_recipe
 })
