@@ -242,7 +242,7 @@ function on_rocket_launched(event)
     
     if rocket.name == "rocket-silo-rocket" then
         local sates = rocket.get_item_count("satellite")
-        if sates > 0 then
+        if sates > 0 and silo then
             local inv = silo.get_inventory(defines.inventory.rocket_silo_result)
             if (inv) then
                 inv.insert
@@ -254,11 +254,11 @@ function on_rocket_launched(event)
                 )
             end
         end
-    elseif rocket.name == RXROCKET_NAME then
+    elseif rocket.name == RXROCKET_NAME and silo then
         local launch_site_id = silo.unit_number
         local launch_site_ctx = global.rxsites[launch_site_id]
         handle_rx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
-    elseif rocket.name == TXROCKET_NAME then
+    elseif rocket.name == TXROCKET_NAME and silo then
         local launch_site_id = silo.unit_number
         local launch_site_ctx = global.txsites[launch_site_id]
         handle_tx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
