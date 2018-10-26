@@ -89,7 +89,6 @@ function remove_rx_request_dispatch(request)
     if global.rxqueue_req then
         local rxq = global.rxqueue_req
         local it = rxq
-        
         repeat
             if it.value.id == request.id then
                 -- found target request
@@ -101,8 +100,11 @@ function remove_rx_request_dispatch(request)
         until it == rxq
         
         if target_node then
+            local next_node = target_node.next
             if linkedList.erase(target_node) == nil then
                 global.rxqueue_req = nil
+            elseif target_node == rxq then
+                global.rxqueue_req = next_node
             end
         end
     end
@@ -134,8 +136,11 @@ function complete_rx_request_dispatch(request)
         until it == rxq
         
         if target_node then
+            local next_node = target_node.next
             if linkedList.erase(target_node) == nil then
                 global.rxqueue_comp = nil
+            elseif target_node == rxq then
+                global.rxqueue_comp = next_node
             end
         end
     end
