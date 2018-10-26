@@ -234,11 +234,12 @@ function handle_rx_rocket_launched(launch_site_id, launch_site_ctx, rocket)
                 ret.type = RX_REQTYPE_RETURN
                 ret.ttl = nil
                 send_rx_request(ret) -- return not inserted items
-                set_rx_site_state(launch_site_ctx, RXSTATE_IDLE)
+                update_launch_site_invmonitor(launch_site_ctx, defines.inventory.rocket_silo_result)
             end
         else
             broadcast_msg_all("[!] A RX rocket is wasted: rocket was launched, but there was no target request")
         end
+        set_rx_site_state(launch_site_ctx, RXSTATE_IDLE)
     else
         broadcast_msg_all("[!] A RX rocket is wasted: rocket was launched without a launch signal and requests")
     end
