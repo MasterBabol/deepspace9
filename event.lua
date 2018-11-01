@@ -1,7 +1,7 @@
 
 function register_events()
     script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_entity}, on_entity_created)
-    script.on_event({defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined, defines.events.on_entity_died}, on_entity_destroyed)
+    script.on_event({defines.events.on_pre_player_mined_item, defines.events.on_robot_mined_entity, defines.events.on_entity_died}, on_entity_destroyed)
     script.on_event(defines.events.on_tick, on_tick)
     script.on_event(defines.events.on_rocket_launched, on_rocket_launched)
 end
