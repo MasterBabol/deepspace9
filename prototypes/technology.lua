@@ -47,6 +47,10 @@ tech_signal = {
         {
             type = "unlock-recipe",
             recipe = TXSIGNALER_NAME
+        },
+        {
+            type = "unlock-recipe",
+            recipe = RXINVENSIG_NAME
         }
     },
     unit =
